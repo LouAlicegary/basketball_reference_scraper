@@ -1,6 +1,8 @@
+"""
+This class represents a "daily record" comprising a team's win/loss record on a particular date in the season
+"""
 class DailyRecord(object):
     
-
     """
     Takes in an array of game details (date, home/away, scores) and spits out an array of "daily" style records
     """
@@ -20,7 +22,8 @@ class DailyRecord(object):
                 loserRecord = self.__createDailyTeamRecord(winnerLoserDetails["date"], winnerLoserDetails["loser"], updatedWLRecords["loserRecord"])
                 dailyRecordArray.extend((winnerRecord, loserRecord))
 
-        print teamRecordArray
+        for item in teamRecordArray:
+            print item, teamRecordArray[item]
 
         return dailyRecordArray
 
@@ -35,7 +38,7 @@ class DailyRecord(object):
         recordDict = {}
         
         for team in teamArray:
-            recordDict[team] = {"win": 0, "loss": 0}
+            recordDict[team] = {"win": 0, "loss": 0, "total": 0, "percentage": 0.00}
 
         return recordDict
 
@@ -80,9 +83,14 @@ class DailyRecord(object):
     def __updateWLRecords(self, teamRecordArray, winnerLoserDetails):
 
         winnerRecord = teamRecordArray[winnerLoserDetails["winner"]]
-        loserRecord = teamRecordArray[winnerLoserDetails["loser"]]
         winnerRecord["win"] += 1
+        winnerRecord["total"] += 1
+        winnerRecord["percentage"] = float(winnerRecord["win"]) / float(winnerRecord["total"])
+
+        loserRecord = teamRecordArray[winnerLoserDetails["loser"]]
         loserRecord["loss"] += 1
+        loserRecord["total"] += 1
+        loserRecord["percentage"] = float(loserRecord["win"]) / float(loserRecord["total"])
 
         return {
             "winnerRecord": winnerRecord,
@@ -99,5 +107,6 @@ class DailyRecord(object):
             "date": date,
             "team": team,
             "win": teamRecord["win"],
-            "loss": teamRecord["loss"]
+            "loss": teamRecord["loss"],
+            "percentage": teamRecord["percentage"]
         }

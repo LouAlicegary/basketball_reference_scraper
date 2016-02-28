@@ -57,3 +57,5 @@ class Scraper(object):
     def __dateParser(self, dateString):
 
         return time.strptime(dateString, "%a, %b %d, %Y")
+
+

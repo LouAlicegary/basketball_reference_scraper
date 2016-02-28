@@ -10,7 +10,7 @@ Do the thing.
 def main():
 
     gameDetailsArray = Scraper().getAllGameDetails()
-    pp.pprint(gameDetailsArray)
+    #pp.pprint(gameDetailsArray)
     
     dailyRecordArray = DailyRecord().createDailyRecordsFromGameDetails(gameDetailsArray)
     #pp.pprint(dailyRecordArray)
