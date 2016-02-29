@@ -9,11 +9,13 @@ Do the thing.
 """
 def main():
 
-    gameDetailsArray = Scraper().getAllGameDetails()
-    #pp.pprint(gameDetailsArray)
+    gameDetailsList = Scraper().getAllGameDetails()
+    #pp.pprint(gameDetailsList)
     
-    dailyRecordArray = DailyRecord().createDailyRecordsFromGameDetails(gameDetailsArray)
-    #pp.pprint(dailyRecordArray)
+    dailyRecordList = DailyRecord().createFromGameDetails(gameDetailsList)
+    #pp.pprint(dailyRecordList)
+    
+    print "\n=== main() finished. ===\n"
 
 
 if __name__ == "__main__":
